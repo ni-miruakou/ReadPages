@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>标题</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Directory Management hardlink链接到同一卷中单个文件 CreateHardLink  DeleteFile  junctions软链接，本地卷中的文件 通过重解析点实现 symbol link 同步和异步★reparse points比照reparse tag查找与data format identified关联的file system filter，找到后将按照rep">
+<meta property="og:type" content="article">
+<meta property="og:title" content="标题">
+<meta property="og:url" content="https://ni-miruakou.github.io/2022/06/07/Local%20file%20system/index.html">
+<meta property="og:site_name" content="标题">
+<meta property="og:description" content="Directory Management hardlink链接到同一卷中单个文件 CreateHardLink  DeleteFile  junctions软链接，本地卷中的文件 通过重解析点实现 symbol link 同步和异步★reparse points比照reparse tag查找与data format identified关联的file system filter，找到后将按照rep">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://docs.microsoft.com/en-us/windows/win32/fileio/images/basic-mbr.png">
+<meta property="og:image" content="https://docs.microsoft.com/en-us/windows/win32/fileio/images/basic-gpt.png">
+<meta property="article:published_time" content="2022-06-06T17:44:37.733Z">
+<meta property="article:modified_time" content="2022-04-01T03:26:30.536Z">
+<meta property="article:author" content="Rongbing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://docs.microsoft.com/en-us/windows/win32/fileio/images/basic-mbr.png">
+  
+    <link rel="alternate" href="/atom.xml" title="标题" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">标题</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">副标题</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ni-miruakou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Local file system" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/Local%20file%20system/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.733Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Directory Management</p>
+<h3 id="hardlink"><a href="#hardlink" class="headerlink" title="hardlink"></a>hardlink</h3><p>链接到同一卷中单个文件</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-createhardlinka"><strong>CreateHardLink</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-deletefilea"><strong>DeleteFile</strong></a> </p>
+<h3 id="junctions"><a href="#junctions" class="headerlink" title="junctions"></a>junctions</h3><p>软链接，本地卷中的文件</p>
+<p>通过重解析点实现</p>
+<p>symbol link</p>
+<h3 id="同步和异步"><a href="#同步和异步" class="headerlink" title="同步和异步"></a>同步和异步</h3><h3 id="★reparse-points"><a href="#★reparse-points" class="headerlink" title="★reparse points"></a>★reparse points</h3><p>比照reparse tag查找与data format identified关联的file system filter，找到后将按照reparse data处理数据</p>
+<p>适用于文件不在物理池存储，而仍要在文件系统中留有存根</p>
+<h3 id="hard-disk"><a href="#hard-disk" class="headerlink" title="hard disk"></a>hard disk</h3><p>platter盘片</p>
+<p>head盘面</p>
+<p>track磁道 盘面上的圆环</p>
+<p>cylinder柱面 上下一组盘面同一位置的一组磁道</p>
+<p>sector扇区 磁道 一段圆弧 最小可寻址单位</p>
+<h4 id="基本磁盘"><a href="#基本磁盘" class="headerlink" title="基本磁盘"></a>基本磁盘</h4><p>常用，支持USB驱动器</p>
+<ul>
+<li>创建和删除主分区和扩展分区。</li>
+<li>在扩展分区中创建和删除逻辑驱动器。</li>
+<li>格式化分区并将其标记为活动。</li>
+</ul>
+<h4 id="动态磁盘"><a href="#动态磁盘" class="headerlink" title="动态磁盘"></a>动态磁盘</h4><p>只推荐作为镜像引导卷</p>
+<p>允许卷在一个或多个物理磁盘上具有不连续的扩展区</p>
+<p>依赖于逻辑磁盘管理器 (LDM) 和虚拟磁盘服务 (VDS)</p>
+<p>MBR结构中只允许一个主分区（ LDM 分区），不允许扩展分区，并且在磁盘末尾有一个隐藏分区用于 LDM 数据库</p>
+<ul>
+<li>创建和删除简单、跨区、条带化、镜像和 RAID-5 卷。</li>
+<li>扩展简单或跨区卷。</li>
+<li>从镜像卷中删除镜像或将镜像卷分成两个卷。</li>
+<li>修复镜像或 RAID-5 卷。</li>
+<li>重新激活丢失或脱机的磁盘。</li>
+</ul>
+<h3 id="partitions分区"><a href="#partitions分区" class="headerlink" title="partitions分区"></a>partitions分区</h3><p>逻辑结构</p>
+<h4 id="MBR主引导记录Master-Boot-Record"><a href="#MBR主引导记录Master-Boot-Record" class="headerlink" title="MBR主引导记录Master Boot Record"></a>MBR主引导记录Master Boot Record</h4><p>联系磁盘的第一个物理扇区</p>
+<p> MBR 分区方案在基本磁盘上创建最多四个分区：四个主分区，或三个主分区和一个扩展分区</p>
+<p>扩展分区可以包含一个或多个逻辑驱动器</p>
+<p>扩展分区可能位于也可能不在磁盘的末尾，但对于每个逻辑驱动器，它始终是单个连续空间</p>
+<ul>
+<li>A boot program (up to 442 bytes in size)</li>
+<li>A disk signature (a unique 4-byte number)</li>
+<li>A partition table (up to four entries)</li>
+<li>An end-of-MBR marker (always 0x55AA)</li>
+</ul>
+<p><img src="https://docs.microsoft.com/en-us/windows/win32/fileio/images/basic-mbr.png" alt="使用 mbr 在基本磁盘上的三个主分区和一个扩展分区"><img src="https://docs.microsoft.com/en-us/windows/win32/fileio/images/basic-gpt.png" alt="gpt布局"></p>
+<h4 id="GPT-GUID-Partition-Table"><a href="#GPT-GUID-Partition-Table" class="headerlink" title="GPT GUID Partition Table"></a>GPT GUID Partition Table</h4><p>基本磁盘最多可以有 128 个主分区，而动态磁盘将有一个 LDM 分区</p>
+<p>允许大于 2 TB 的分区。</p>
+<p>增加了分区表的复制和循环冗余校验 (CRC) 保护的可靠性。</p>
+<p>支持由原始设备制造商 (OEM)、独立软件供应商 (ISV) 和其他操作系统定义的其他分区类型<strong>GUID 。</strong></p>
+<p>保护性 MBR 区域存在于 GPT 分区布局中，以便与在 MBR 上运行的磁盘管理实用程序向后兼容。</p>
+<h3 id="file文件"><a href="#file文件" class="headerlink" title="file文件"></a>file文件</h3><h4 id="file-stream"><a href="#file-stream" class="headerlink" title="file stream"></a>file stream</h4><p>​    allocation size</p>
+<p>​     actual size</p>
+<p>​    valid data length (VDL)</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Stream Type</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">::$ATTRIBUTE_LIST</td>
+<td style="text-align:left">Contains a list of all attributes that make up the file and identifies where each attribute is located.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$BITMAP</td>
+<td style="text-align:left">A bitmap used by indexes to manage the b-tree free space for a directory. The b-tree is managed in 4 KB chunks (regardless of cluster size) and this is used to manage the allocation of these chunks. This stream type is present on every directory.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$DATA</td>
+<td style="text-align:left">Data stream. The default data stream has no name. Data streams can be enumerated using the <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-findfirststreamw"><strong>FindFirstStreamW</strong></a> and <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-findnextstreamw"><strong>FindNextStreamW</strong></a> functions.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$EA</td>
+<td style="text-align:left">Contains Extended Attributes data.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$EA_INFORMATION</td>
+<td style="text-align:left">Contains support information about the Extended Attributes.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$FILE_NAME</td>
+<td style="text-align:left">The name of the file, in Unicode characters. This includes the short name of the file as well as any hard links.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$INDEX_ALLOCATION</td>
+<td style="text-align:left">The stream type of a directory. Used to implement filename allocation for large directories. This stream represents the directory itself and contains all of the data of the directory. Changes to streams of this type are logged to the NTFS change journal. The default stream name of an $INDEX_ALLOCATION stream type is $I30 so “<em>DirName</em>“, “<em>DirName</em>::$INDEX_ALLOCATION”, and “<em>DirName</em>:$I30:$INDEX_ALLOCATION” are all equivalent.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$INDEX_ROOT</td>
+<td style="text-align:left">This stream represents root of the b-tree of an index. This stream type is present on every directory.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$LOGGED_UTILITY_STREAM</td>
+<td style="text-align:left">Similar to ::$DATA but operations are logged to the NTFS change journal. Used by EFS and <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/fileio/transactional-ntfs-portal">Transactional NTFS (TxF)</a>. The “:<em>StreamName</em>:$<em>StreamType</em>“ pair for EFS is “:$EFS:$LOGGED_UTILITY_STREAM” and for TxF is “:$TXF_DATA:$LOGGED_UTILITY_STREAM”.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$OBJECT_ID</td>
+<td style="text-align:left">An 16-byte ID used to identify the file for the link-tracking service.</td>
+</tr>
+<tr>
+<td style="text-align:left">::$REPARSE_POINT</td>
+<td style="text-align:left">The <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/fileio/reparse-points">reparse point</a> data.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="File-Objects"><a href="#File-Objects" class="headerlink" title="File Objects"></a>File Objects</h4><p>​    File name</p>
+<p>​    Current byte offset</p>
+<p>​    Share mode</p>
+<p>​    I/O mode</p>
+<p>​    Pointer to device object</p>
+<p>​    Pointer to the volume parameter block, or <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/content/wdm/ns-wdm-_vpb"><strong>VPB</strong></a> </p>
+<p>​    Pointer to section object pointers</p>
+<p>​    Pointer to private cache map</p>
+<h4 id="File-Handles文件句柄"><a href="#File-Handles文件句柄" class="headerlink" title="File Handles文件句柄"></a>File Handles文件句柄</h4><p>通常是进程唯一且私有的</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-createfilea"><strong>CreateFile</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/handleapi/nf-handleapi-closehandle"><strong>CloseHandle</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/handleapi/nf-handleapi-duplicatehandle"><strong>DuplicateHandle</strong></a> </p>
+<h4 id="File-Pointers文件指针"><a href="#File-Pointers文件指针" class="headerlink" title="File Pointers文件指针"></a>File Pointers文件指针</h4><p>指向要读写的文件位置，打开默认为0，每次读写后移，至文件尾不再移动</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-setfilepointer"><strong>SetFilePointer</strong></a> 设置文件指针位置</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-setendoffile"><strong>SetEndOfFile</strong></a> 设置指针位置为文件结束位置</p>
+<h4 id="Clusters-and-Extents簇和范围"><a href="#Clusters-and-Extents簇和范围" class="headerlink" title="Clusters and Extents簇和范围"></a>Clusters and Extents簇和范围</h4><p>范围是文件中连续的簇，文件中任何簇都有虚拟簇号LCN针对文件开头的偏移，逻辑簇号LCN针对卷的偏移，但是LCN不保证物理映射</p>
+<h2 id="function"><a href="#function" class="headerlink" title="function"></a>function</h2><h3 id="monitor-directory"><a href="#monitor-directory" class="headerlink" title="monitor directory"></a>monitor directory</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findfirstchangenotificationa"><strong>FindFirstChangeNotification</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/synchapi/nf-synchapi-waitformultipleobjects"><strong>WaitForMultipleObjects</strong></a> 等待直到条件满足为止返回</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findnextchangenotification"><strong>FindNextChangeNotification</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findclosechangenotification"><strong>FindCloseChangeNotification</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-readdirectorychangesw"><strong>ReadDirectoryChangesW</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-readdirectorychangesexw"><strong>ReadDirectoryChangesExW</strong></a> </p>
+<h3 id="path"><a href="#path" class="headerlink" title="path"></a>path</h3><p>dir</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/sysinfoapi/nf-sysinfoapi-getsystemdirectorya"><strong>GetSystemDirectory</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/sysinfoapi/nf-sysinfoapi-getwindowsdirectorya"><strong>GetWindowsDirectory</strong></a> </p>
+<h3 id="DOS-Device"><a href="#DOS-Device" class="headerlink" title="DOS Device"></a>DOS Device</h3><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-definedosdevicew"><strong>DefineDosDevice</strong> </a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-setvolumemountpointa"><strong>SetVolumeMountPoint</strong></a>  </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-deletevolumemountpointw"><strong>DeleteVolumeMountPoint</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-querydosdevicew"><strong>QueryDosDevice</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getlogicaldrives"><strong>GetLogicalDrives</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getlogicaldrivestringsw"><strong>GetLogicalDriveStrings</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol"><strong>DeviceIoControl</strong></a> sent ctrl</p>
+<h3 id="volume卷"><a href="#volume卷" class="headerlink" title="volume卷"></a>volume卷</h3><p>带文件系统的分区，卷与分区一对一关联</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findfirstvolumew"><strong>FindFirstVolume</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findnextvolumew"><strong>FindNextVolume</strong></a> </p>
+<p><strong><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-findvolumeclose">FindVolumeClose</a></strong> </p>
+<p>info</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getvolumeinformationa"><strong>GetVolumeInformation</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getdrivetypea"><strong>GetDriveType</strong></a> 指定驱动器号引用的卷是可移动驱动器、固定驱动器、CD-ROM、RAM 还是网络驱动器</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getvolumepathnamew"><strong>GetVolumePathName</strong></a> 挂载点</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getvolumenameforvolumemountpointw"><strong>GetVolumeNameForVolumeMountPoint</strong></a> 挂载点对应的卷名</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-setvolumelabela"><strong>SetVolumeLabel</strong></a> 卷标签</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getdiskfreespacea"><strong>GetDiskFreeSpace</strong></a> 卷的组织信息，包括每个扇区的字节数、每个簇的扇区数、空闲簇的数量和簇的总数，不能报告大于 2 GB 的卷大小</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getdiskfreespaceexa"><strong>GetDiskFreeSpaceEx</strong></a> </p>
+<p>journal</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findfirstchangenotificationa"><strong>FindFirstChangeNotification</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-readdirectorychangesw"><strong>ReadDirectoryChangesW</strong></a> </p>
+<p>更新序列号 (USN) </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_create_usn_journal"><strong>FSCTL_CREATE_USN_JOURNAL</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_delete_usn_journal"><strong>FSCTL_DELETE_USN_JOURNAL</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_enum_usn_data"><strong>FSCTL_ENUM_USN_DATA</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_mark_handle"><strong>FSCTL_MARK_HANDLE</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_query_usn_journal"><strong>FSCTL_QUERY_USN_JOURNAL</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/winioctl/ni-winioctl-fsctl_read_usn_journal"><strong>FSCTL_READ_USN_JOURNAL</strong></a> </p>
+<p>enum</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-findfirstvolumemountpointa"><strong>FindFirstVolumeMountPoint</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-findnextvolumemountpointa"><strong>FindNextVolumeMountPoint</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-findvolumemountpointclose"><strong>FindVolumeMountPointClose</strong></a> </p>
+<h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>handle</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-createfilea"><strong>CreateFile</strong></a> 创建或打开文件</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-openfile"><strong>OpenFile</strong></a> 过时的</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/handleapi/nf-handleapi-closehandle"><strong>CloseHandle</strong></a> </p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-lockfile"><strong>LockFile</strong></a> 阻止其他线程duplicate handle写入</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-unlockfile"><strong>UnlockFile</strong></a>  </p>
+<p>list</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findfirstfilea"><strong>FindFirstFile</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findfirstfileexa"><strong>FindFirstFileEx</strong></a> advantage search</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findnextfilea"><strong>FindNextFile</strong> </a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-findclose"><strong>FindClose</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/api/processenv/nf-processenv-searchpatha"><strong>SearchPath</strong></a> path file exist？</p>
+<p>move</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-movefileexa"><strong>MoveFileEx</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-movefilewithprogressa"><strong>MoveFileWithProgress</strong></a> 带有进度通知回调函数</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-movefiletransacteda"><strong>MoveFileTransacted</strong></a> </p>
+<p>copy</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-copyfile"><strong>CopyFile</strong></a> 非写入状态</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-copyfileexa"><strong>CopyFileEx</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nc-winbase-lpprogress_routine"><strong>CopyProgressRoutine</strong></a> 进度回调</p>
+<p>replace</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-replacefilea"><strong>ReplaceFile</strong></a> 将一个文件替换为另一个文件</p>
+<p>delete</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-deletefilea"><strong>DeleteFile</strong></a> </p>
+<p>rw</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-readfile"><strong>ReadFile</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-readfileex"><strong>ReadFileEx</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-writefile"><strong>WriteFile</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-writefileex"><strong>WriteFileEx</strong></a> </p>
+<p>不连续缓冲区读写</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-readfilescatter"><strong>ReadFileScatter</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-writefilegather"><strong>WriteFileGather</strong> </a> </p>
+<p>写入磁盘</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-flushfilebuffers"><strong>FlushFileBuffers</strong></a> </p>
+<p>call <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-createfilea"><strong>CreateFile</strong></a> with flag: <strong>FILE_FLAG_NO_BUFFERING</strong></p>
+<p>文件加密</p>
+<p>未提及</p>
+<p>Sparse File</p>
+<p>零散数据文件的高性能读写，未提及</p>
+<p>temp</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-gettempfilenamea"><strong>GetTempFileName</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-gettemppatha"><strong>GetTempPath</strong></a> </p>
+<p>access privilege</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/aclapi/nf-aclapi-getsecurityinfo"><strong>GetSecurityInfo</strong></a> </p>
+<p>backup</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-backupread"><strong>BackupRead</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-backupseek"><strong>BackupSeek</strong> </a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/winbase/nf-winbase-backupwrite"><strong>BackupWrite</strong></a> </p>
+<p>info</p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfileattributesa"><strong>GetFileAttributes</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfileattributesexa"><strong>GetFileAttributesEx</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-setfileattributesa"><strong>SetFileAttributes</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfileinformationbyhandle"><strong>GetFileInformationByHandle</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfilesize"><strong>GetFileSize</strong></a> （byte）</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfiletype"><strong>GetFileType</strong></a> </p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-getbinarytypea"><strong>GetBinaryType</strong></a> executable？</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-getfiletime"><strong>GetFileTime</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-setfiletime"><strong>SetFileTime</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-readdirectorychangesw"><strong>ReadDirectoryChangesW</strong></a> </p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-arefileapisansi"><strong>AreFileApisANSI</strong></a> //whether file I/O functions are using the ANSI or OEM character set code page</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-setfileapistoansi"><strong>SetFileApisToANSI</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/fileapi/nf-fileapi-setfileapistooem"><strong>SetFileApisToOEM</strong></a> </p>
+<h3 id="Directory"><a href="#Directory" class="headerlink" title="Directory"></a>Directory</h3><p>current</p>
+<p>the directory in which the active application started</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-getcurrentdirectory"><strong>GetCurrentDirectory</strong> </a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfullpathnamea"><strong>GetFullPathName</strong>  </a> 文件名转换为当前文件夹下文件名对应的完整路径</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-setcurrentdirectory"><strong>SetCurrentDirectory</strong> </a> </p>
+<p>handle</p>
+<p>call <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-createfilea"><strong>CreateFile</strong></a> with flag: <strong>FILE_FLAG_BACKUP_SEMANTICS</strong></p>
+<p>Create</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-createdirectorya"><strong>CreateDirectory</strong></a> </p>
+<p> <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-createdirectoryexa"><strong>CreateDirectoryEx</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-createdirectorytransacteda"><strong>CreateDirectoryTransacted</strong></a> </p>
+<p>delete（empty）</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-removedirectorya"><strong>RemoveDirectory</strong></a> </p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/WinBase/nf-winbase-removedirectorytransacteda"><strong>RemoveDirectoryTransacted</strong></a> </p>
+<h2 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h2><h3 id="旧系统使用8-3样式命名文件"><a href="#旧系统使用8-3样式命名文件" class="headerlink" title="旧系统使用8.3样式命名文件"></a>旧系统使用8.3样式命名文件</h3><p>8.3 格式的长文件名 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getshortpathnamew"><strong>GetShortPathName</strong></a> </p>
+<p>短名称的长文件名版本 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getlongpathnamea"><strong>GetLongPathName</strong></a> </p>
+<p>文件的完整路径 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/desktop/api/FileAPI/nf-fileapi-getfullpathnamea"><strong>GetFullPathName</strong></a> </p>
+<h3 id="当前目录"><a href="#当前目录" class="headerlink" title="当前目录"></a>当前目录</h3><p>在路径中使用句点作为目录<em>组件</em>来表示当前目录，例如“.\temp.txt”。</p>
+<p>使用两个连续的句点 (..) 作为路径中的目录<em>组件</em>来表示当前目录的父目录，例如“..\temp.txt”。</p>
+<p>如果文件名仅以磁盘指示符开头但冒号后没有反斜杠，则将其解释为具有指定字母的驱动器上当前目录的相对路径：“C:tmp.txt”指的是驱动器 C 上当前目录中名为“tmp.txt”的文件；“C:tempdir\tmp.txt”指的是驱动器 C 上当前目录的子目录中的文件。</p>
+<h3 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h3><p>任何格式的 UNC 名称，始终以两个反斜杠字符 (“\“) 开头。</p>
+<p>带有反斜杠的磁盘指示符，例如“C:\”或“d:\”。</p>
+<p>单个反斜杠，例如“\directory”或“\file.txt”。这也称为<em>绝对路径</em>。</p>
+<h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>路径字符串的 <code>\\?\</code> 前缀告诉 Windows API 禁用所有字符串解析并将其后面的字符串直接发送到文件系统。</p>
+<p> <code>\\.\</code> 前缀将访问 Win32 设备命名空间， </p>
+<p><code>\\.\COM56</code> 56号串口</p>
+<p><code>\\.\PhysicalDisk X</code> x为整数，指代磁盘 </p>
+<p><code>\\.\CdRom X</code> </p>
+<p>使用<code>\\.\</code>前缀来仅访问设备而不是文件。大多数 API 不支持 <code>\\.\</code>; </p>
+<h3 id="命名约定"><a href="#命名约定" class="headerlink" title="命名约定"></a>命名约定</h3><ul>
+<li><p>使用 <code>.</code> 将基本文件名与目录或文件名中的扩展名分开。</p>
+</li>
+<li><p>使用反斜杠 <code>\</code> 分隔路径的组成部分</p>
+</li>
+<li><p>不要假设区分大小写。卷指示符（驱动器号）同样不区分大小写。例如，“D:\”和“d:\”指的是同一个卷。</p>
+</li>
+<li><p>使用当前代码页中的任何字符作为名称，包括 Unicode 字符和扩展字符集 (128–255) 中的字符，但以下字符除外：</p>
+<ul>
+<li><p>以下保留字符：</p>
+<ul>
+<li>&lt;（小于）</li>
+<li>>（大于）</li>
+<li>： （冒号）</li>
+<li>“（双引号）</li>
+<li>/（正斜杠）</li>
+<li>\（反斜杠）</li>
+<li>| （垂直条或管）</li>
+<li>? （问号）</li>
+<li>*（星号）</li>
+</ul>
+</li>
+<li><p>整数值零，有时称为 ASCII <em>NUL</em>字符。</p>
+</li>
+<li><p>整数表示在 1 到 31 范围内的字符，但允许使用这些字符的备用数据流除外。</p>
+</li>
+<li><p>目标文件系统不允许的任何其他字符。</p>
+</li>
+<li><p>不要使用以下保留名称作为文件名：</p>
+<p>CON、PRN、AUX、NUL、</p>
+<p>COM1、COM2、COM3、COM4、COM5、COM6、COM7、COM8、COM9、</p>
+<p>LPT1、LPT2、LPT3、LPT4、LPT5、LPT6、LPT7、LPT8、LPT9。</p>
+<p>还要避免这些名称后跟扩展名；例如，不推荐使用 NUL.txt。</p>
+</li>
+</ul>
+</li>
+<li><p>不要以空格或句点结尾的文件或目录名称。</p>
+</li>
+</ul>
+<h3 id="最大路径长度"><a href="#最大路径长度" class="headerlink" title="最大路径长度"></a>最大路径长度</h3><p>[X]:\[256个字符]\<NUL>    256+4=260个字符</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/Local%20file%20system/" data-id="cl430wi4w000eakfcgnm041pf" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/07/MySQL/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/07/linux%20shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Es/" rel="tag">Es</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAP/" rel="tag">WAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about/" rel="tag">about</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Es/" style="font-size: 10px;">Es</a> <a href="/tags/WAP/" style="font-size: 10px;">WAP</a> <a href="/tags/about/" style="font-size: 10px;">about</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/07/C++/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/Android/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/UWP/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/ProcessService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/OpenGL/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rongbing<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

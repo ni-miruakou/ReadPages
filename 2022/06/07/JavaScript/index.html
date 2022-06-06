@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: WAP | 标题</title>
+  <title>标题</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="概述">
-<meta property="og:type" content="website">
+  <meta name="description" content="JavaScript简介注意 文档自上而下加载 console.dir([object])&#x2F;&#x2F;打印对象和它其内的值  路线 ​    ECMAScript  ​    Web-APIs  DOM 页面元素 Document Object Model  ​    DOM树    graph LR;     a([DOM树])     document--&gt;html;     html--&gt;head;">
+<meta property="og:type" content="article">
 <meta property="og:title" content="标题">
-<meta property="og:url" content="https://ni-miruakou.github.io/tags/WAP/index.html">
+<meta property="og:url" content="https://ni-miruakou.github.io/2022/06/07/JavaScript/index.html">
 <meta property="og:site_name" content="标题">
-<meta property="og:description" content="概述">
+<meta property="og:description" content="JavaScript简介注意 文档自上而下加载 console.dir([object])&#x2F;&#x2F;打印对象和它其内的值  路线 ​    ECMAScript  ​    Web-APIs  DOM 页面元素 Document Object Model  ​    DOM树    graph LR;     a([DOM树])     document--&gt;html;     html--&gt;head;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-06T17:44:37.698Z">
+<meta property="article:modified_time" content="2021-12-20T09:27:37.973Z">
 <meta property="article:author" content="Rongbing">
 <meta name="twitter:card" content="summary">
   
@@ -75,39 +77,126 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-06-04T17:07:25.000Z" itemprop="datePublished">6月 5</time>
+        <section id="main"><article id="post-JavaScript" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/JavaScript/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.698Z" itemprop="datePublished">2022-06-07</time>
 </a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/">水声学原理</a>
-    </h1>
-  
-
-    </header>
+    
   </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ol>
+<li>文档自上而下加载</li>
+<li>console.dir([object])//打印对象和它其内的值</li>
+</ol>
+<h3 id="路线"><a href="#路线" class="headerlink" title="路线"></a>路线</h3><ul>
+<li><p>​    ECMAScript</p>
+</li>
+<li><p>​    Web-APIs</p>
+<ul>
+<li><h4 id="DOM-页面元素-Document-Object-Model"><a href="#DOM-页面元素-Document-Object-Model" class="headerlink" title="DOM 页面元素 Document Object Model"></a>DOM 页面元素 Document Object Model</h4></li>
+</ul>
+<p>​    DOM树 </p>
+<pre class="mermaid">  graph LR;
+    a([DOM树])
+    document-->html;
+    html-->head;
+    html-->body;
+    body-->element;
+    element-->attribute;
+    element-->text;
+    element-->note;</pre>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h5 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h5><ul>
+<li><p>ID</p>
+<p>[element]=getElementById([‘Id’])</p>
+</li>
+<li><p>标签名，返回伪数组</p>
+<p>[Collection]=getElementsByTagName([‘TagName’])</p>
+</li>
+<li><p>类名（HTML5）</p>
+<p>[Collection]=getElementsByClassName([‘ClassName’)</p>
+</li>
+<li><p>选择器</p>
+<p>[element]=querySelector([‘选择器’])</p>
+<p>[Collection]=querySelectorAll([‘选择器’])</p>
+</li>
+<li><p>特别</p>
+<p>html: document.documentElement</p>
+<p>body: document.body</p>
+<p>head: document.head</p>
+</li>
+</ul>
+</li>
+<li><h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><p>​    三要素：事件源（元素），事件类型（触发事件），事件处理程序（函数）</p>
+<p>​    [事件源].on[事件类型]=function(){}</p>
+<p>在function中的this指向事件函数的调用者即事件源</p>
+</li>
+<li><h5 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h5><ul>
+<li><p>文本Text</p>
+<p>innerText，文本，去除空格和换行·        </p>
+<p>innerHtml，富文本（W3C标准）</p>
+</li>
+<li><p>属性Attribute</p>
+<p>行内样式：style.[样式属性]</p>
+<p>​        隐藏：display=’None’</p>
+<p>类名：className</p>
+<p>​        用于修改批量修改样式</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h5 id="内置对象的使用"><a href="#内置对象的使用" class="headerlink" title="内置对象的使用"></a>内置对象的使用</h5><ul>
+<li>Data</li>
+</ul>
+</li>
+<li><h5 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h5></li>
+<li><p>BOM 浏览器功能</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/JavaScript/" data-id="cl430wi460007akfc5z3407eu" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/07/KnowMap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/07/Flutter/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

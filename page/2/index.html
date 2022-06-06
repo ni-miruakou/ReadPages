@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>标题</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="概述">
+<meta property="og:type" content="website">
+<meta property="og:title" content="标题">
+<meta property="og:url" content="https://ni-miruakou.github.io/page/2/index.html">
+<meta property="og:site_name" content="标题">
+<meta property="og:description" content="概述">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Rongbing">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="标题" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">标题</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">副标题</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ni-miruakou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Flutter" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/Flutter/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.688Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h1><p>万物Widget</p>
+<h2 id="Widget"><a href="#Widget" class="headerlink" title="Widget"></a>Widget</h2><p>用于描述UI配置</p>
+<p>》》子类是</p>
+<p>=》一一转化为</p>
+<p>-》转化为</p>
+<p>Widget 》》StatelessWidget 和 StatefulWidget=》Element-》RenderObject-》Layer</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/Flutter/" data-id="cl430wi440006akfch8su709p" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-deepLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/deepLearning/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.678Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="感知机perceptron"><a href="#感知机perceptron" class="headerlink" title="感知机perceptron"></a>感知机perceptron</h2><p>感知机接收多个输入信号，输出一个信号，感知机的信号只有两种取值。</p>
+<p>$1:0?(w_1x_1+w_2x_2&gt;\theta)$</p>
+<p>感知机的局限性就在于它只能表示由一条直线分割的空间。无法表示非线性空间。</p>
+<p>叠加了多层的感知机也称为多层感知机multi-layered perceptron</p>
+<p>异或门是2层感知机。</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>输入层，0层，x<br>中间层，隐藏层f<br>输出层y<br>偏置b<br>权重<br>激活函数h，非线性以体现多层优越性<br>    sigmod：1/1*exp(-x)<br>    阶跃函数：y=f(x):h(b+∑w_ix_i)<br>    Relu<br>输出层激活函数，sigma<br>    恒等函数<br>    softmax   exp(ai)/∑exp(ai+C)，C=-np.max防溢出，<br>前向传播，→<br>损失函数<br>    均方误差½∑(y_k-t_k)²<br>    交叉熵函数-∑t_klg(y_k+delta min)，值是由正确解标签所对应的输出结果决定的<br>mini batch小批量</p>
+<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>从训练数据中自动获取最优权重参数的过程</p>
+<p>损失函数lost function</p>
+<p>​    均方误差$\frac 1 2 Σ(y_k-t_k)^2$</p>
+<p>​    交叉熵误差-$\sum_k^t log(y_k)$，只计算对应正确解标签的输出的自然对数</p>
+<p>小批量学习 mini-batch</p>
+<p>梯度下降法</p>
+<p>学习率η（超参数，参数的参数）</p>
+<p>$x_n=x_n-η*df/dx_n$</p>
+<p>特征量</p>
+<p>​    SIFT</p>
+<p>​    SURF</p>
+<p>​    HOG</p>
+<p>分类器（机器学习）</p>
+<p>​    SVM</p>
+<p>​    KNN</p>
+<p>神经网络甚至学习特征量    end-to-end machine learning端到端机器学习</p>
+<p>训练数据（监督数据）</p>
+<p>测试数据</p>
+<p>泛化能力</p>
+<p>过拟合</p>
+<h3 id="误差反向传播"><a href="#误差反向传播" class="headerlink" title="误差反向传播"></a>误差反向传播</h3><p>计算图</p>
+<h2 id="class-numpy"><a href="#class-numpy" class="headerlink" title="class numpy:"></a>class numpy:</h2><p>​    array@array<br>​    array@astype@numpy_type/类型转换<br>​    array@dot乘法<br>​    int@dim纬度<br>​    tuple@shape<br>​    random<br>​        choice<br>​    </p>
+<h1 id="神经网络-1"><a href="#神经网络-1" class="headerlink" title="神经网络"></a>神经网络</h1><p>分类问题：类class，样本sample，标签label<br>训练集training set，测试集test set<br>层layer，表示，数据蒸馏data distillation｛全连接，softmax输出｝<br>编译compile，<br>    损失函数loss function，<br>    优化器optimizer，<br>    指标metric：精度acc<br>拟合fit<br>－－》精度acc，损失loss<br>问题：过拟合overfit：在新数据的性能差于训练数据</p>
+<p>经典例子：MINST<br>数据集：from keras.datasets import minst</p>
+<p>层：层的状态是权重，层的本身是知识，层是数据处理模块，层间需要满足层兼容性，即上下层输出输入形态匹配<br>                密集连接层：全连接层：密集层：保存2d向量数据：#Dense<br>                循环层：保存3d序列数据：#LSTM<br>                卷积层：保存4d图像数据：#Conv2D<br>模型：层构成的网络，<code>model_type</code><br>                线性堆叠，Sequential<br>                双分支<br>                多头<br>                Inception</p>
+<p>损失函数：每个输出对应一个损失函数：</p>
+<p>​    二分类：二元交叉熵</p>
+<p>​    多分类：分类交叉熵</p>
+<p>​    序列：联结主义时序分类</p>
+<p>优化器</p>
+<p>● 模型<br><code>from Keras import models</code><br><code>model＝models.[model_type]()</code><br><code>model.add(first_layer__with_input_shape_set)</code><br><code>model.add(layer)</code></p>
+<p>● 层<br><code>from Keras import layers</code><br><code>first_layer__with_input_shape_set＝layers.[#Layer_type]([output_shape],input_shape=(,))</code><br><code>layer＝layers.[#Layer_type]([output_shape])</code></p>
+<p>● 数据集<br><code>from Keras.datasets import [data_set]</code><br><code>(train_data, train_labels), (test_data, test_labels) = [data_set].load_data()</code><br>● 编译<br><code>.compile(optimizer=&#39;&#39;,loss=&#39;&#39;,metrics&#39;&#39;)</code><br>● 拟合<br>                            标签审定<br><code>from keras.utils import to_categorical</code><br><code>train_labels = to_categorical(train_labels)</code><br><code>test_labels = to_categorical(test_labels)</code></p>
+<p><code>.fit([train_data],[train_label],epochs=[],batch_size=[])</code></p>
+<p><code>.evaluate([test_data],[test_label])</code>》》<code>[test_acc]</code><br>● 方法和参数</p>
+<p>len()</p>
+<p>.shape<br>.ndim<br>.dtype</p>
+<p>.reshape()<br>.astype()</p>
+<p>● 显示图像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">plt.imshow([image], cmap=plt.cm.binary) </span><br><span class="line">	plt.show()</span><br></pre></td></tr></table></figure>
+<p>● 数据：张量tensor：矩阵向任意【维度dimension》轴axis】的推广：存储在预先分配的程序段<br>            标量scalar：0d，向量vector：1d，矩阵matrix[row,column]：2d，… …<br>            轴的个数ndim：阶rank数<br>            形状shape：元组：各轴向的维度<br>            数据类型dtype：float32 float64 uint8 char 没有字符串张量<br>            操作：张量切片 [:,:,:] tensor slicing<br>            批量batch：第0轴：批量轴batch axis<br>            例：视频：(samples, frames, heigth, width, channels)<br>            运算：<br>                逐元素运算element-wise：maximum()<br>                广播broadcast：<br>                张量点积tensor product：dot</p>
+<p>同济大学，王迪<br>15318934991<br>214609639<br>时间<br>夏令营<br>1397590030</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/deepLearning/" data-id="cl430wi4o000cakfcgy0s6asf" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-DataGathering" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/DataGathering/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.669Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="数据采集"><a href="#数据采集" class="headerlink" title="数据采集"></a>数据采集</h1><h2 id="类设计"><a href="#类设计" class="headerlink" title="类设计"></a>类设计</h2><p>bool@isConnectNet@null<br>bool@itConnectInternet@null<br>str @urlParseHttp@str url%bool s<br>list:str@urlParseArea@str url</p>
+<h1 id="listAppend"><a href="#listAppend" class="headerlink" title="@listAppend"></a>@listAppend</h1><p>str@areasParseUrl@list area<br>class res@requestUrl@str url<br>@processMulti%fun theProcess%list to_process%fun endProcess<br>list:res@requestUrlMulti@str base_url%fun str@iterateArea%range%%int area_pos=-1<br>file@requestUrlSchedule@str url%fun saveRes%schedule<br>@requestUrlStaticInit（clear，open，create）#pickle<br>@requestUrlStaticCheck（if requested）<br>class res：<br>    code<br>    content<br>    size<br>    text<br>    class encode static：<br>        utf8<br>        gbk<br>        gb18030<br>    @setEncodeContentHead<br>class area:<br>    class area_type static:<br>        root<br>        head<br>        branch<br>        leaf<br>        filename<br>        dotfile<br>class tag:<br>        dic attr<br>        list subtags<br>        encode<br>        text<br>        @operate<br>        @tag</p>
+<pre><code>    #findfunction
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/DataGathering/" data-id="cl430wi410005akfchgjecm41" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-CSS" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/CSS/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.659Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="CSS-cascading-style-sheets-层叠样式表"><a href="#CSS-cascading-style-sheets-层叠样式表" class="headerlink" title="CSS cascading style sheets 层叠样式表"></a>CSS cascading style sheets 层叠样式表</h1><h2 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h2><p>具体性    specificity</p>
+<p>级联性    cascade</p>
+<p>继承</p>
+<h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>外部</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;[css name].css&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>内部</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    css <span class="selector-tag">code</span></span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>内联，不推荐</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">style=&quot;css code&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@charset</span> 定义样式表使用的字符集.</span><br><span class="line">@import 告诉 CSS 引擎引入一个外部样式表.</span><br><span class="line">@namespace 告诉 CSS 引擎必须考虑XML命名空间。</span><br><span class="line">嵌套@规则, 是嵌套语句的子集,不仅可以作为样式表里的一个语句，也可以用在条件规则组里：</span><br><span class="line">    @media, 如果满足媒介查询的条件则条件规则组里的规则生效。</span><br><span class="line">    @page, 描述打印文档时布局的变化.</span><br><span class="line">    @font-face, 描述将下载的外部的字体。 </span><br><span class="line">    @keyframes, 描述 CSS 动画的中间步骤。</span><br><span class="line">    @supports, 如果满足给定条件则条件规则组里的规则生效。 </span><br><span class="line">    @document, 如果文档样式表满足给定条件则条件规则组里的规则生效。<span class="number">4</span>TH</span><br><span class="line">[selector] &#123;</span><br><span class="line">    <span class="selector-attr">[property]</span>: [value];</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">/* 注释 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="选择器selector"><a href="#选择器selector" class="headerlink" title="选择器selector"></a>选择器selector</h2><ul>
+<li><p>[label]</p>
+</li>
+<li><p>.[class]</p>
+</li>
+<li><h1 id="id"><a href="#id" class="headerlink" title="[id]"></a>[id]</h1></li>
+<li><p>:[pseudo-class]  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#%E4%BC%AA%E7%B1%BB">伪类</a></p>
+</li>
+<li><p>::[pseudo-elements]  <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/Selectors/Pseudo-classes_and_pseudo-elements#%E4%BC%AA%E5%85%83%E7%B4%A0">伪元素</a></p>
+</li>
+<li><p>[[attr]=[value]]、[[attr]]</p>
+<p>＝修饰</p>
+<ul>
+<li>~=包含独立的value</li>
+<li>|=以value为前缀</li>
+<li>^=以value开头</li>
+<li>$=以value结尾</li>
+<li>*=包含一到多个独立非独立的value</li>
+</ul>
+<p>尾巴修饰</p>
+<ul>
+<li>i 忽略大小写，支持ASCII外</li>
+<li>s 区分大小写，支持ASCII外</li>
+</ul>
+</li>
+</ul>
+<p>多重选择</p>
+<ul>
+<li>A,B    且</li>
+<li>A+B    A接下来的B</li>
+<li>A~B    A以后的B</li>
+<li>A&gt;B    A下的B</li>
+<li>A B    A内的B</li>
+</ul>
+<p>选择器的优先级</p>
+<p>内联最高，ID，类/属性/伪类，元素/伪元素最低</p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p>ALL</p>
+<p>/<em> Global values </em>/<br>all: initial;    初始值<br>all: inherit;    继承值<br>all: unset;    默认方式获得的值</p>
+<p>/<em> CSS Cascading and Inheritance Level 4 </em>/<br>all: revert;    回滚</p>
+<p>速记</p>
+<p>-top -right -bottom -left</p>
+<p>-color -image -position -repeat -attachment</p>
+<h2 id="值"><a href="#值" class="headerlink" title="值"></a>值</h2><h3 id="数值"><a href="#数值" class="headerlink" title="数值"></a>数值</h3><ul>
+<li><integer>
+</li>
+<li><number>
+</li>
+<li><dimension>
+
+<ul>
+<li><length>
+
+<p>auto</p>
+<p>绝对</p>
+<ul>
+<li>px    1/96 in</li>
+<li>cm</li>
+<li>mm</li>
+<li>Q     1/4mm</li>
+<li>in    2.54cm</li>
+<li>pc    1/16 in</li>
+<li>pt    1/72 in</li>
+</ul>
+<p>相对</p>
+<ul>
+<li>em    字体大小</li>
+<li>ex    字符高度</li>
+<li>ch    数字宽度</li>
+<li>rem    根元素字体大小</li>
+<li>lh    line-height</li>
+<li>vw、vh    1%视图宽|高</li>
+<li>vmin、vmax</li>
+</ul>
+</li>
+<li><angle>
+</li>
+<li><p><time></p>
+</li>
+<li><resolution>
+</li>
+</ul>
+</li>
+<li><percentage>
+
+</li>
+</ul>
+<h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色<color></h3><h1 id="rrggbb-0-ffffff"><a href="#rrggbb-0-ffffff" class="headerlink" title="[rrggbb:0-ffffff]"></a>[rrggbb:0-ffffff]</h1><p>rgb([r:0-255],[g:0-255],[b:0-255])；rgba([r:0-255],[g:0-255],[b:0-255],[a:0-1])</p>
+<p>hsl([h,:0-360],[s:0-100%],[l:0-100%])；hsla([h,:0-360],[s:0-100%],[l:0-100%],[a:0-1])</p>
+<p>red|blue|green|yellow|gray|black|white|pink|purple … …</p>
+<h3 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像<image></h3><p>url()</p>
+<p>[]-gradient()</p>
+<h3 id="位置"><a href="#位置" class="headerlink" title="位置"></a>位置<position></h3><p>[top|left|bottom|right|center]  [<length>]</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>“[字符串]”</p>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>calc()</p>
+<p>rotate()</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/CSS/" data-id="cl430wi3x0003akfc7d3q0mhk" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Computer" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/Computer/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.646Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="技术指标"><a href="#技术指标" class="headerlink" title="技术指标"></a>技术指标</h2><h3 id="字长"><a href="#字长" class="headerlink" title="字长"></a>字长</h3><p>CPU寄存器二进制位数</p>
+<h3 id="运算速度"><a href="#运算速度" class="headerlink" title="运算速度"></a>运算速度</h3><ul>
+<li><p>主频</p>
+</li>
+<li><p>核心数、线程数</p>
+</li>
+<li><p>吉普森法：概率指令耗时</p>
+<ul>
+<li><p>静态使用频率</p>
+</li>
+<li><p>动态使用频率</p>
+</li>
+<li><p>CPI clock cycle per instruction，IPC</p>
+</li>
+<li><p>MIPS million instructions per second</p>
+</li>
+<li><p>FLOPS每秒浮点运算次数</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储容量"><a href="#存储容量" class="headerlink" title="存储容量"></a>存储容量</h3><ul>
+<li><p>主存</p>
+<ul>
+<li><p>容量</p>
+<ul>
+<li><p>存储单位数×存储字长</p>
+</li>
+<li><p>字节数</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>辅存</p>
+<ul>
+<li>字节数</li>
+</ul>
+</li>
+</ul>
+<h2 id="发展和应用"><a href="#发展和应用" class="headerlink" title="发展和应用"></a>发展和应用</h2><ul>
+<li><p>eniac</p>
+<p>1946年  1.8w晶体管  10进制  5000次加法运算</p>
+</li>
+<li><p>微处理器 1971，存储芯片</p>
+</li>
+</ul>
+<h2 id="总线"><a href="#总线" class="headerlink" title="总线"></a>总线</h2><p>各部件共享传输介质</p>
+<ul>
+<li><p>概念</p>
+<ul>
+<li><p>缘由</p>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>分类</p>
+</li>
+<li><p>控制</p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/Computer/" data-id="cl430wi3z0004akfc19teg7a3" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T16:43:03.325Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/07/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/hello-world/" data-id="cl42zhyzz0000xofc5ak1639k" data-title="Hello World" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Es" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/05/Es/" class="article-date">
+  <time class="dt-published" datetime="2022-06-04T17:07:25.000Z" itemprop="datePublished">2022-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/05/Es/">西班牙语</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h6 id="再见"><a href="#再见" class="headerlink" title="再见"></a>再见</h6><p>¡Hasta mañanl! </p>
+<p>¡Hasta el lunes!	周一见</p>
+<p>¡Chao!	（非正式）再见</p>
+<h6 id="语言"><a href="#语言" class="headerlink" title="语言"></a>语言</h6><p>hablar [lengua]	说+[语言]</p>
+<p>¿Qué lenguas hablas?</p>
+<h6 id="穿着"><a href="#穿着" class="headerlink" title="穿着"></a>穿着</h6><p>llevar [衣服]</p>
+<h6 id="外貌性格形容"><a href="#外貌性格形容" class="headerlink" title="外貌性格形容"></a>外貌性格形容</h6><p>Ser+[]</p>
+<p>hay [n.] en [地点] </p>
+<p>a</p>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><p>año	年</p>
+<p>mes	月</p>
+<p>semana	星期</p>
+<p>día	天</p>
+<p>hora	小时</p>
+<p>minuto	分钟</p>
+<p>segundo	秒</p>
+<h3 id="时间hora-minuto"><a href="#时间hora-minuto" class="headerlink" title="时间	hora+minuto"></a>时间	hora+minuto</h3><p>ser+阴性定冠词+小时+连接词+分钟</p>
+<p>Es la una (<strong>en punto</strong>).	1:00</p>
+<p>Es la una y cinco.		   1:05</p>
+<p>Es la una y <strong>cuarto</strong>.		1:15</p>
+<p>Es la una y <strong>media.</strong>		 1:30</p>
+<p>Son las dos <strong>menos</strong> cuarto.	1:45</p>
+<p>Son las ocho en punto de la <strong>mañana</strong>.                                        </p>
+<p>Son las tres y cuarto de la <strong>tarde</strong>.</p>
+<p>Son las diez y media de la <strong>noche</strong>.    	                          </p>
+<p>1:00 — 1:59 (la una y cincuenta y nueve)，Ser和阴性定冠词用单数（Es和la）；从2:00开始，Ser和阴性定冠词用复数（Son和las）</p>
+<p>差多少到几点用menos</p>
+<p>非24小时制采用+de+上manana下trade午晚上noche</p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220316151910638.png" alt="西班牙语数字"></p>
+<h3 id="日期-fecha-dia-mes-x2F-semana"><a href="#日期-fecha-dia-mes-x2F-semana" class="headerlink" title="日期 fecha día+mes&#x2F;semana"></a>日期 <strong>fecha</strong> día+mes&#x2F;semana</h3><table>
+<thead>
+<tr>
+<th>星期</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>星期一</td>
+<td>lunes</td>
+<td>星期五</td>
+<td>viernes</td>
+</tr>
+<tr>
+<td>星期二</td>
+<td>martes</td>
+<td>星期六</td>
+<td>sábado</td>
+</tr>
+<tr>
+<td>星期三</td>
+<td>miércoles</td>
+<td>星期日</td>
+<td>domingo</td>
+</tr>
+<tr>
+<td>星期四</td>
+<td>jueves</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>¿Qué día es hoy?</p>
+<p>Hoy es ____.</p>
+<table>
+<thead>
+<tr>
+<th>月份</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一月</td>
+<td>enero</td>
+<td>七月</td>
+<td>julio</td>
+</tr>
+<tr>
+<td>二月</td>
+<td>febrero</td>
+<td>八月</td>
+<td>agosto</td>
+</tr>
+<tr>
+<td>三月</td>
+<td>marzo</td>
+<td>九月</td>
+<td>septiembre</td>
+</tr>
+<tr>
+<td>四月</td>
+<td>abril</td>
+<td>十月</td>
+<td>octubre</td>
+</tr>
+<tr>
+<td>五月</td>
+<td>mayo</td>
+<td>十一月</td>
+<td>noviembre</td>
+</tr>
+<tr>
+<td>六月</td>
+<td>junio</td>
+<td>十二月</td>
+<td>diciembre</td>
+</tr>
+</tbody></table>
+<p> ¿A qué día estamos hoy?</p>
+<p>Hoy estamos a ____ de ____.</p>
+<p>¿A cuántos estamos hoy? </p>
+<p>Estamos a ____ de ____.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/05/Es/" data-id="cl4304lsh00008wfchztk6xkn" data-title="西班牙语" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Es/" rel="tag">Es</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-about" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/05/about/" class="article-date">
+  <time class="dt-published" datetime="2022-06-04T17:07:25.000Z" itemprop="datePublished">2022-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/05/about/">About</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="本网站采用Hexo生成"><a href="#本网站采用Hexo生成" class="headerlink" title="本网站采用Hexo生成"></a>本网站采用<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>生成</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>npm</p>
+<p>git</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>新建文件夹<folder>，在文件夹中打开命令行，在命令行中执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo init &lt;folder&gt;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> &lt;folder&gt;</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install</span></span><br></pre></td></tr></table></figure>
+
+<p>在文件夹中会生成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml		配置信息</span><br><span class="line">├── package.json	×</span><br><span class="line">├── scaffolds		模板：用于新建文件时使用</span><br><span class="line">├── source			资源</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">├── themes			主题</span><br><span class="line">└── public			由Hexo生成的网站，将被复制到服务器中去</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置（github）"><a href="#配置（github）" class="headerlink" title="配置（github）"></a>配置（github）</h2><p>在GitHub中：跟随引导新建一个网站repo</p>
+<p>在shell中：安装插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>在<code>_config.yml</code>中：添加部署设置</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: https://github.com/ni-miruakou/ni-miruakou.github.io</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
+
+<h2 id="以后"><a href="#以后" class="headerlink" title="以后"></a>以后</h2><p>g：生成，d：部署，w：监视改动，n：新建</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo g -d</span></span><br></pre></td></tr></table></figure>
+
+<p>在MD文件</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">categories: 类别名</span><br><span class="line">tages: [标签1,标签2,...标签n]</span><br><span class="line"></span><br><span class="line">tages: </span><br><span class="line"><span class="bullet">-</span> 标签1</span><br><span class="line"><span class="bullet">-</span> 标签2</span><br><span class="line">...</span><br><span class="line"><span class="bullet">-</span> 标签n</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/05/about/" data-id="cl4304lsu00018wfchu25fndj" data-title="About" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/about/" rel="tag">about</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-水声学原理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/" class="article-date">
+  <time class="dt-published" datetime="2022-06-04T17:07:25.000Z" itemprop="datePublished">2022-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/">水声学原理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="水声学原理"><a href="#水声学原理" class="headerlink" title="水声学原理"></a>水声学原理</h1><h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>推荐书籍：</p>
+<ul>
+<li>汪德昭、尚尔昌，《水声学》，科学出版社</li>
+<li>Finn B. Jensen, William A. Kuperman, Michael B. Porter &amp; Henrik Schmidt, 《Computational Ocean Acoustics》, Second Edition,Springer.</li>
+<li>L.M. Brekhovskikh &amp; Yu.P. Lysanov, 《Fundamentals of Ocean Acoustics》, Third Edition, Springer.</li>
+</ul>
+<p>水声学主要研究声波在水下的辐射、传播与接收，用以解决与水下目标探测和信息传输过程有关的各种声学问题</p>
+<pre class="mermaid">graph LR;
+root(水声学);
+root-->pr(水声物理) & eng(水声工程);
+eng-->sys(水声系统) & tec(水声技术);
+pr-->env(海洋环境) & trans(传播) & sound(混响,噪声,散射) & tool(声纳设备);;
+env-->water(海水) & proof(海底,海面)</pre>
+
+<h2 id="第一章-声纳"><a href="#第一章-声纳" class="headerlink" title="第一章  声纳"></a>第一章  声纳</h2><p>Sonar  Sound Navigation and Ranging</p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220303002629429.png" alt="image-20220303002629429"></p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220604211857560.png" alt="image-20220604211857560"></p>
+<h3 id="声纳参数"><a href="#声纳参数" class="headerlink" title="声纳参数"></a>声纳参数</h3><h4 id="声源级-SL"><a href="#声源级-SL" class="headerlink" title="声源级 $SL$"></a>声源级 $SL$</h4><p>描述主动声纳所发射的声信号的强弱</p>
+<p> $SL=10lg\frac{I}{I<em>0}|</em>{r=1}$  </p>
+<p>$I$为发射器声轴方向上离声源声中心1米处的声强，$I<em>0$为参考声强（$P</em>{RMS}=1\mu P_a$的平面波对应的声强）</p>
+<p>$SL=10lgP_a+170.77(+DI_T)$ 辐射声功率$P_a$ </p>
+<h4 id="发射指向性指数-DI-T"><a href="#发射指向性指数-DI-T" class="headerlink" title="发射指向性指数$DI_T$"></a>发射指向性指数$DI_T$</h4><p>Directivity Index</p>
+<p>越大则声能在声轴方向<u>集中</u>的程度越高</p>
+<p> $DI<em>T=10lg\frac{I_D}{I</em>{ND}}$ </p>
+<h4 id="传播损失-TL"><a href="#传播损失-TL" class="headerlink" title="传播损失  $TL$"></a>传播损失  $TL$</h4><p>Transmission Loss</p>
+<p>定量描述声波传播一定距离后声强度的<u>衰减</u>变化</p>
+<p>$TL=10lg\frac{I_1}{I_r}$ </p>
+<p>$I_1$是离声源声中心1米处的声强度，$I_r$离声源声中心 r  米处的声强度</p>
+<h4 id="目标强度-TS"><a href="#目标强度-TS" class="headerlink" title="目标强度 $TS$"></a>目标强度 $TS$</h4><p>Target Strength </p>
+<p>描述<u>目标反射</u>本领的大小</p>
+<p>$TS=10lg\frac{I<em>r}{I_i}|</em>{r=1}$ </p>
+<p>$I_i$是目标处入射声波的强度，$I_r$离目标声中心1米处的回波强度</p>
+<h4 id="海洋环境噪声级-NL"><a href="#海洋环境噪声级-NL" class="headerlink" title="海洋环境噪声级 $NL$"></a>海洋环境噪声级 $NL$</h4><p>Noise Level </p>
+<p>环境<u>噪声</u>强弱的量</p>
+<p>$NL=10lg\frac{I_N}{I_0}$  $I_0$为参考声强度，$I_N$是测量带宽内(或1Hz频带内)的噪声强度</p>
+<h4 id="接收指向性指数-DI"><a href="#接收指向性指数-DI" class="headerlink" title="接收指向性指数$DI$"></a>接收指向性指数$DI$</h4><p> $DI<em>T=10lg\frac{I</em>{无指向性水听器噪声功率}}{I_{指向性水听器噪声功率}}$  指向性的轴向灵敏度==无指向的灵敏度</p>
+<h4 id="水听器灵敏度级-S-h"><a href="#水听器灵敏度级-S-h" class="headerlink" title="水听器灵敏度级$S_h$"></a>水听器灵敏度级$S_h$</h4><p>$S_h=20lgM(dB) M=V/p(V/\mu P_a)$ </p>
+<h4 id="检测阈-DT"><a href="#检测阈-DT" class="headerlink" title="检测阈 $DT$"></a>检测阈 $DT$</h4><p>detection threshold</p>
+<p>刚好正常工作的的信噪比值</p>
+<p>$DT=10\log(SNR_{min})$ </p>
+<h3 id="声纳方程"><a href="#声纳方程" class="headerlink" title="声纳方程"></a>声纳方程</h3><p>信号级别-背景干扰≥检测阈</p>
+<p>回声信号级：SL-2TL+TS</p>
+<p>背景噪声干扰级：NL-DI；等效平面波混响级：RL 》指向性抑制了无指向性的噪声</p>
+<p>收发合置主动声纳：$DT=(SL-2TL+TS)-(NL-DI)|(RL)$</p>
+<p>​              被动声纳：$DT=(SL-TL)-(NL-DI)$</p>
+<p>希望TL可以大一些，要求SL，DI大一些，DT小一些，无法要求TS，NL小一些，SL增大会面临（技术难题、空化、互作用）；增大DI会需要（波束形成、矢量水听器）；减小DT会用到（信号处理）。</p>
+<p>噪声掩蔽级：NL-DT+DT；混响掩蔽级：RL+DT</p>
+<p><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20220604220423105.png" alt="image-20220604220423105"></p>
+<p>回声曲线随距离下降比混响掩蔽级曲线要快，我们选择占主要的部分筛选方程</p>
+<p>回声信号级：SL-2TL+TS</p>
+<p>(主动声纳)回声余量（回声比噪声强）：SL-2TL+TS-(NL-DI+DT)</p>
+<p>(被动声纳)优质因数（TL可≤）：SL-(NL-DI+DT)</p>
+<p>$I=\frac 1 T \int_0^Tpudt$ </p>
+<h3 id="本章习题"><a href="#本章习题" class="headerlink" title="本章习题"></a>本章习题</h3><ol>
+<li><p>线源远场公式</p>
+</li>
+<li><p>声源级和声功率</p>
+<p>$I=\frac 1 T \int_0^Tpudt$ </p>
+</li>
+<li><p>格林函数为第一类汉克尔函数的声场对应的传播损失</p>
+</li>
+<li><p>（声纳设备性能预报）扫雷舰拖曳宽带噪声源，其辐射噪声引爆音响水雷，达到扫雷的目的。设噪声源谱级为130dB，被扫水雷上水声接收机工作带宽为 50~300Hz，当噪声信号高出4级海况时的环境噪声15dB时水雷被引爆。求此扫雷舰多远距离上能引爆水雷？（4级海况下50~300Hz频带内的环境噪声谱级约为68dB；传播损失以球面波计算）</p>
+</li>
+<li>（声纳设备设计）应用主动声纳探测1000m处的目标。已知目标的声压反射系数是0.7，声纳工作中心频率20kHz，工作带宽100Hz，工作海域环境噪声谱级50dB，换能器接收指向性指数为10dB，当接收信号信噪比大于15dB时，声纳能正确检测到该目标，求此主动声纳的最小声源级。</li>
+</ol>
+<h2 id="第二章-海洋声学"><a href="#第二章-海洋声学" class="headerlink" title="第二章 海洋声学"></a>第二章 海洋声学</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/" data-id="cl4304lt500048wfcg4g35lth" data-title="水声学原理" class="article-share-link">Teilen</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WAP/" rel="tag">WAP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/">&laquo; zurück</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Es/" rel="tag">Es</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAP/" rel="tag">WAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about/" rel="tag">about</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Es/" style="font-size: 10px;">Es</a> <a href="/tags/WAP/" style="font-size: 10px;">WAP</a> <a href="/tags/about/" style="font-size: 10px;">about</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/07/C++/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/Android/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/UWP/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/ProcessService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/OpenGL/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rongbing<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

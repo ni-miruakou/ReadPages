@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>标题</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="OpenGLgraph TD; GUI--&gt;Windows &amp; Android &amp; Web &amp; openGL &amp; Hyper; Windows--&gt; Win32 &amp; .NET &amp; WinUI3 &amp; UWP; WinUI3--&gt;MAUI; Win32--&gt;WinForm &amp; WPF; UWP--&gt;WinUI2 &amp; React_Native; openGL--&gt;openGLES &amp; webGL &amp; V">
+<meta property="og:type" content="article">
+<meta property="og:title" content="标题">
+<meta property="og:url" content="https://ni-miruakou.github.io/2022/06/07/OpenGL/index.html">
+<meta property="og:site_name" content="标题">
+<meta property="og:description" content="OpenGLgraph TD; GUI--&gt;Windows &amp; Android &amp; Web &amp; openGL &amp; Hyper; Windows--&gt; Win32 &amp; .NET &amp; WinUI3 &amp; UWP; WinUI3--&gt;MAUI; Win32--&gt;WinForm &amp; WPF; UWP--&gt;WinUI2 &amp; React_Native; openGL--&gt;openGLES &amp; webGL &amp; V">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://learnopengl-cn.github.io/img/01/04/pipeline.png">
+<meta property="og:image" content="https://learnopengl-cn.github.io/img/01/04/ndc.png">
+<meta property="og:image" content="https://learnopengl-cn.github.io/img/01/06/tex_coords.png">
+<meta property="og:image" content="https://learnopengl-cn.github.io/img/01/06/mipmaps.png">
+<meta property="article:published_time" content="2022-06-06T17:44:37.762Z">
+<meta property="article:modified_time" content="2022-05-14T18:09:30.942Z">
+<meta property="article:author" content="Rongbing">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://learnopengl-cn.github.io/img/01/04/pipeline.png">
+  
+    <link rel="alternate" href="/atom.xml" title="标题" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">标题</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">副标题</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ni-miruakou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-OpenGL" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/OpenGL/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.762Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="OpenGL"><a href="#OpenGL" class="headerlink" title="OpenGL"></a>OpenGL</h1><pre class="mermaid">graph TD;
+GUI-->Windows & Android & Web & openGL & Hyper;
+Windows--> Win32 & .NET & WinUI3 & UWP;
+WinUI3-->MAUI;
+Win32-->WinForm & WPF;
+UWP-->WinUI2 & React_Native;
+openGL-->openGLES & webGL & Vulkan;
+Android-->Java & Kotlin & Flutter;
+Web-->React_Native & Vue & Angular & Electron;
+Hyper.->MAUI & Electron & Flutter & React_Native & QT;</pre>
+
+<h3 id="basic"><a href="#basic" class="headerlink" title="basic"></a>basic</h3><p>状态机，流，<br>glfw窗口管理<br>glew函数接口转换<br>顶点缓冲区<br>glGenBuffer@count%out_id<br>glBindBuffer@type%id<br>glBufferData@type%size%buffer<br>着色器<br>glCreateProgram<br>顶点，片段/像素，几何，细分曲面<br>顶点属性<br>位置<br>纹理坐标<br>法线<br>glDrawArrays<br>glDrawElements<br>glVertexAttrPointer<br>glVertexAttrPointer</p>
+<h3 id="对象Object"><a href="#对象Object" class="headerlink" title="对象Object"></a>对象Object</h3><p>存储数据和状态</p>
+<h4 id="顶点缓冲对象：Vertex-Buffer-Object，VBO"><a href="#顶点缓冲对象：Vertex-Buffer-Object，VBO" class="headerlink" title="顶点缓冲对象：Vertex Buffer Object，VBO"></a>顶点缓冲对象：Vertex Buffer Object，VBO</h4><p>顶点属性从VBO中获得，使用哪个VBO取决于哪个VBO被绑定到GL_ARRAY_BUFFER</p>
+<p>在GPU上创建内存用于储存我们的顶点数据，通过顶点缓冲对象管理这个内存⚙通过一次性发送大量顶点数据加速</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glGenBuffers([count of buffers], &amp;VBO);</span><br><span class="line">glBindBuffer(GL_ARRAY_BUFFER, VBO);</span><br><span class="line">glBufferData(GL_ARRAY_BUFFER, sizeof(float) * count_number, vertices, GL_STATIC_DRAW);</span><br></pre></td></tr></table></figure>
+<h4 id="顶点数组对象：Vertex-Array-Object，VAO"><a href="#顶点数组对象：Vertex-Array-Object，VAO" class="headerlink" title="顶点数组对象：Vertex Array Object，VAO"></a>顶点数组对象：Vertex Array Object，VAO</h4><p><strong>VBO</strong>可能会有多个，但<strong>VAO</strong>只有一个</p>
+<p><strong>VAO</strong>就是为了向GPU解释顶点数据</p>
+<p>绑定VAO，以告知OpenGL程序该使用这个VAO来对VBO做出解释， 然后，绑定每个VBO后，向这个VBO中写入数据，并告知VAO该如何解释这个VBO的信息，针对不同的VBO，VAO能够以不同的方式解释信息</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glVertexAttribPointer([start], [attr count of each vertex], [type:GL_FLOAT], [normalize:GL_FALSE], [strike in byte], [pointer of buffer,(<span class="type">void</span>*)<span class="number">0</span> <span class="keyword">if</span> VBO]);</span><br><span class="line">glEnableVertexAttribArray([index]);</span><br></pre></td></tr></table></figure>
+<p>管理</p>
+<h4 id="索引缓冲对象：Element-Buffer-Object，EBO或Index-Buffer-Object，IBO"><a href="#索引缓冲对象：Element-Buffer-Object，EBO或Index-Buffer-Object，IBO" class="headerlink" title="索引缓冲对象：Element Buffer Object，EBO或Index Buffer Object，IBO"></a>索引缓冲对象：Element Buffer Object，EBO或Index Buffer Object，IBO</h4><h3 id="着色器Shader"><a href="#着色器Shader" class="headerlink" title="着色器Shader"></a>着色器Shader</h3><h4 id="图形渲染管线-Graphics-Pipeline"><a href="#图形渲染管线-Graphics-Pipeline" class="headerlink" title="图形渲染管线 Graphics Pipeline"></a>图形渲染管线 Graphics Pipeline</h4><p>内含许多着色器 Shader，用OpenGL着色器语言 OpenGL Shading Language, GLSL 写成</p>
+<p><img src="https://learnopengl-cn.github.io/img/01/04/pipeline.png" alt="img"></p>
+<p>3D坐标转为2D坐标转像素</p>
+<p>⭐顶点着色器(Vertex Shader)：3D坐标转为标准化设备3D坐标</p>
+<p>➰图元装配(Primitive Assembly)阶段：将顶点着色器输出的所有顶点装配成指定图元的形状</p>
+<p>➰几何着色器(Geometry Shader)：几何着色器把图元(Primitive)[指定顶点数据的渲染类型（点、三角形、线[GL_POINTS、GL_TRIANGLES、GL_LINE_STRIP]）]形式的一系列顶点的集合作为输入，通过产生新顶点构造出新的图元来生成其他形状。</p>
+<p>➰光栅化阶段(Rasterization Stage)：这里它会把图元映射为最终屏幕上相应的像素，生成片段(Fragment)[渲染一个像素所需的所有数据]，执行裁切(Clipping)[丢弃超出视图以外的所有像素]</p>
+<p>⭐片段着色器(Fragment Shader)：计算一个像素的最终颜色，这也是所有OpenGL高级效果产生的地方。包含3D场景的数据（比如光照、阴影、光的颜色等等）</p>
+<p>➰Alpha测试和混合(Blending)阶段：根据深度和模板(Stencil)值决定像素是否应该丢弃；根据alpha值(透明度)对物体进行混合(Blend)。</p>
+<p>仅标准化设备坐标(Normalized Device Coordinates,NDC)[3D坐标在3个轴上都为-1.0到1.0的范围内]范围内的坐标才呈现在屏幕上。<img src="https://learnopengl-cn.github.io/img/01/04/ndc.png" alt="NDC"></p>
+<p>通过glViewport函数提供的数据进行视口变换(Viewport Transform)变换为屏幕空间坐标(Screen-space Coordinates)</p>
+<p>GLSL中一个向量有最多4个分量，<code>vec.x</code>、<code>vec.y</code>、<code>vec.z</code>和<code>vec.w</code>。<code>vec.w</code>用于透视除法(Perspective Division)</p>
+<p>颜色被表示为有4个元素的数组：红色、绿色、蓝色和alpha(透明度)分量 RGBA。颜色每个分量的强度在0.0到1.0之间。</p>
+<h3 id="纹理Texture"><a href="#纹理Texture" class="headerlink" title="纹理Texture"></a>纹理Texture</h3><p>图片和数据，映射map到物体上</p>
+<h4 id="纹理坐标Texture-Coordinate"><a href="#纹理坐标Texture-Coordinate" class="headerlink" title="纹理坐标Texture Coordinate"></a>纹理坐标Texture Coordinate</h4><p>用来标明该从纹理图像的哪个部分采样Sampling，之后在图形的其它片段上进行片段插值Fragment Interpolation。</p>
+<p>纹理坐标起始于(0, 0)左下角，终止于(1, 1)右上角。<img src="https://learnopengl-cn.github.io/img/01/06/tex_coords.png" alt="img"></p>
+<h4 id="纹理环绕方式"><a href="#纹理环绕方式" class="headerlink" title="纹理环绕方式"></a>纹理环绕方式</h4><p>纹理坐标设置在范围之外会发生什么</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">环绕方式</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GL_REPEAT</td>
+<td style="text-align:left">对纹理的默认行为。重复纹理图像。</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_MIRRORED_REPEAT</td>
+<td style="text-align:left">和GL_REPEAT一样，但每次重复图片是镜像放置的。</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_CLAMP_TO_EDGE</td>
+<td style="text-align:left">纹理坐标会被约束在0到1之间，超出的部分会重复纹理坐标的边缘，产生一种边缘被拉伸的效果。</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_CLAMP_TO_BORDER</td>
+<td style="text-align:left">超出的坐标为用户指定的边缘颜色。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>单独设置坐标轴纹理环绕方式</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//针对坐标轴指定环绕方式</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_WRAP_【S|T|R】, 【环绕方式】); </span><br><span class="line"><span class="comment">//指定边缘颜色</span></span><br><span class="line"><span class="type">float</span> borderColor[] = &#123; <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span> &#125;; <span class="built_in">glTexParameterfv</span>(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);</span><br></pre></td></tr></table></figure>
+<h4 id="纹理过滤Texture-Filtering"><a href="#纹理过滤Texture-Filtering" class="headerlink" title="纹理过滤Texture Filtering"></a>纹理过滤Texture Filtering</h4><p>纹理坐标不依赖于分辨率Resolution，它可以是任意浮点值</p>
+<p>所以OpenGL需要知道怎样将纹理像素(Texture Pixel，也叫Texel)映射到纹理坐标。</p>
+<p>针对物体大于纹理分辨率的情况产生纹理过滤</p>
+<p>纹理过滤有很多个选项，最重要的两种：</p>
+<ol>
+<li>GL_NEAREST：邻近过滤，Nearest Neighbor Filtering，像素风</li>
+<li>GL_LINEAR：线性过滤，(Bi)linear Filtering，模糊化</li>
+</ol>
+<p>可以在放大(Magnify)和缩小(Minify)的时候设置纹理过滤的选项</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在纹理被缩小的时候使用邻近过滤，被放大时使用线性过滤</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);</span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br></pre></td></tr></table></figure>
+<h4 id="多级渐远纹理Mipmap"><a href="#多级渐远纹理Mipmap" class="headerlink" title="多级渐远纹理Mipmap"></a>多级渐远纹理Mipmap</h4><p>从高分辨率纹理中为小片段获取正确的颜色值就很困难，因为它需要对一个跨过纹理很大部分的片段只拾取一个纹理颜色，同时在在小物体上这会产生不真实的感觉</p>
+<p>多级渐远纹理是一系列的纹理图像，后一个纹理图像是前一个的二分之一。</p>
+<p>距观察者的距离超过一定的阈值，OpenGL会使用不同的多级渐远纹理，即最适合物体的距离的那个。</p>
+<p>多级渐远纹理主要是使用在纹理被缩小的情况下的，纹理放大不会使用多级渐远纹理。</p>
+<p><img src="https://learnopengl-cn.github.io/img/01/06/mipmaps.png" alt="img"></p>
+<p>切换多级渐远纹理级别时也可以在两个不同多级渐远纹理级别之间使用NEAREST和LINEAR过滤</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">过滤方式</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GL_NEAREST_MIPMAP_NEAREST</td>
+<td style="text-align:left">使用最邻近的多级渐远纹理来匹配像素大小，并使用邻近插值进行纹理采样</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_LINEAR_MIPMAP_NEAREST</td>
+<td style="text-align:left">使用最邻近的多级渐远纹理级别，并使用线性插值进行采样</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_NEAREST_MIPMAP_LINEAR</td>
+<td style="text-align:left">在两个最匹配像素大小的多级渐远纹理之间进行线性插值，使用邻近插值进行采样</td>
+</tr>
+<tr>
+<td style="text-align:left">GL_LINEAR_MIPMAP_LINEAR</td>
+<td style="text-align:left">在两个邻近的多级渐远纹理之间使用线性插值，并使用线性插值进行采样</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//缩小使用的纹理，多级渐远线性</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span><br><span class="line"><span class="comment">//放大使用的纹理，线性</span></span><br><span class="line"><span class="built_in">glTexParameteri</span>(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/OpenGL/" data-id="cl430wi4f0009akfchleecvoa" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/07/ProcessService/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/07/MySQL/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Es/" rel="tag">Es</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAP/" rel="tag">WAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about/" rel="tag">about</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Es/" style="font-size: 10px;">Es</a> <a href="/tags/WAP/" style="font-size: 10px;">WAP</a> <a href="/tags/about/" style="font-size: 10px;">about</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/07/C++/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/Android/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/UWP/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/ProcessService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/OpenGL/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rongbing<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

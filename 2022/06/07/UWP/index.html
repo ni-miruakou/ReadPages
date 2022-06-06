@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Tag: WAP | 标题</title>
+  <title>标题</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="概述">
-<meta property="og:type" content="website">
+  <meta name="description" content="Content.Tostring() dir&#x3D;(Right|Left|VerticalCenter|HorizontalCenter|Up|Bottom)如下优先级逐次降低的方式定义相对布局为贴近页面，贴近元素，对照元素     &lt;[Item] RelativePanel.Align[dir]WithPanel&#x3D;”[boolean]”&#x2F;&gt;    &lt;[Item] RelativeP">
+<meta property="og:type" content="article">
 <meta property="og:title" content="标题">
-<meta property="og:url" content="https://ni-miruakou.github.io/tags/WAP/index.html">
+<meta property="og:url" content="https://ni-miruakou.github.io/2022/06/07/UWP/index.html">
 <meta property="og:site_name" content="标题">
-<meta property="og:description" content="概述">
+<meta property="og:description" content="Content.Tostring() dir&#x3D;(Right|Left|VerticalCenter|HorizontalCenter|Up|Bottom)如下优先级逐次降低的方式定义相对布局为贴近页面，贴近元素，对照元素     &lt;[Item] RelativePanel.Align[dir]WithPanel&#x3D;”[boolean]”&#x2F;&gt;    &lt;[Item] RelativeP">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-06T17:44:37.808Z">
+<meta property="article:modified_time" content="2021-09-24T15:57:15.404Z">
 <meta property="article:author" content="Rongbing">
 <meta name="twitter:card" content="summary">
   
@@ -75,39 +77,75 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-06-04T17:07:25.000Z" itemprop="datePublished">6月 5</time>
+        <section id="main"><article id="post-UWP" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/UWP/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.808Z" itemprop="datePublished">2022-06-07</time>
 </a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/06/05/%E6%B0%B4%E5%A3%B0%E5%AD%A6%E5%8E%9F%E7%90%86/">水声学原理</a>
-    </h1>
-  
-
-    </header>
+    
   </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Content.Tostring()</p>
+<p>dir=(Right|Left|VerticalCenter|HorizontalCenter|Up|Bottom)<br>如下优先级逐次降低的方式定义相对布局为贴近页面，贴近元素，对照元素</p>
+<p><RelativePanel><br>    &lt;[Item] RelativePanel.Align[dir]WithPanel=”[boolean]”/&gt;<br>    &lt;[Item] RelativePanel.Align[dir]With=”[ItemName]”/&gt;<br>    &lt;[Item] RelativePanel.[dir]Of=”[ItemName]”/&gt;<br>    &lt;[Panel]&gt;
+</RelativePanel>  </p>
+<hr>
+<p>mode=(Inline|CompactInline|Overlay|CompactOverlay)<br>作为抽屉界面，含有简略和详细两种布局</p>
+<p><SplitView DisplayMode="[mode]" CompactPaneLength="" OpenPaneLength=""><br>    <SplitView.Pane><br>        &lt;[Item]/&gt;<br>        …<br>    &lt;/SplitView.Pane&gt;<br>    <SplitView.Content><br>        &lt;[Item]/&gt;<br>        …<br>    &lt;/SplitView.Content&gt;<br>&lt;/SpiltView&gt;<br>//切换布局<br>fun(){<br>    [SplitViewName].IsPaneOpen=[Boolean]<br>}</p>
+<hr>
+<p>断点：应用窗口尺寸：小（-640）、中（641-1007）、大（1008-）</p>
+<p>有效像素epx、ep、px</p>
+<p>若要在运行时获取元素的大小，请使用只读 ActualHeight 和 ActualWidth 属性，而不是 Height 和 Width 。</p>
+<hr>
+<p>导航Navigation：<br>FrameObject：：Page</p>
+<p>//导向指定页<br>[Frame].Navigate(typeof([PageName],[自己指定的参数]));<br>protected override void OnNavigatedTo(NavigationEventArgs e){<br>    //导向后获取数据<br>}<br>//向前导航<br>if([Frame].CanGoBack){<br>    [Frame].GoBack();<br>}<br>//向后导航<br>if([Frame].CanGoForward){<br>    [Frame].Forward();<br>}</p>
+<hr>
+<p>HyperlinkButton<br>》NavigateUri=””</p>
+<hr>
+<p>CheckBox<br>》Tapped=@<br>《&amp;IsChecked<br>》</p>
+<p>RadioButton<br>》GroupName=””<br>》Checked=@</p>
+<p>ComboBox<br>》SelectionChanged=@fun<br>》》comboBoxItem<br>    》IsSelected<br>《private void fun(object sender,SelectionChangedEventArgs e){<br>    var combo=(ComboBox)sender;<br>    var item=(ComboBoxItem)combo.selectedItem;<br>}</p>
+<p>ListBox<br>》SelectionMode=”Single|Multiple”<br>》SelectionChanged=@fun<br>《<br>var selectedItems=[ListBoxName].Items.Cast<ListBoxItem>().where(p=&gt;p.IsSelected).Select(t=&gt;t.Content.ToString()).ToArray();<br>text=string.Join(“[break]”,selectedItems)</p>
+<p>Image<br>》Source=”filepath”<br>》Stretch=”None原尺寸|Fill填充|Uniform等比填充|UinformToFill”</p>
+<p>ToggleButton<br>》IsThreeState=”True|False”，null|1|0<br>《&amp;IsChecked</p>
+<p>ToggleSwitch<br>》《offContent<br>》《OnContent</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/UWP/" data-id="cl430wi4m000bakfc5wjdcc5t" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/07/Android/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/07/ProcessService/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

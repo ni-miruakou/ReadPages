@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>标题</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="深度学习感知机perceptron感知机接收多个输入信号，输出一个信号，感知机的信号只有两种取值。 $1:0?(w_1x_1+w_2x_2&gt;\theta)$ 感知机的局限性就在于它只能表示由一条直线分割的空间。无法表示非线性空间。 叠加了多层的感知机也称为多层感知机multi-layered perceptron 异或门是2层感知机。 神经网络结构输入层，0层，x中间层，隐藏层f输出层y偏置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="标题">
+<meta property="og:url" content="https://ni-miruakou.github.io/2022/06/07/deepLearning/index.html">
+<meta property="og:site_name" content="标题">
+<meta property="og:description" content="深度学习感知机perceptron感知机接收多个输入信号，输出一个信号，感知机的信号只有两种取值。 $1:0?(w_1x_1+w_2x_2&gt;\theta)$ 感知机的局限性就在于它只能表示由一条直线分割的空间。无法表示非线性空间。 叠加了多层的感知机也称为多层感知机multi-layered perceptron 异或门是2层感知机。 神经网络结构输入层，0层，x中间层，隐藏层f输出层y偏置">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-06T17:44:37.678Z">
+<meta property="article:modified_time" content="2022-04-30T04:55:50.693Z">
+<meta property="article:author" content="Rongbing">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="标题" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">标题</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">副标题</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://ni-miruakou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-deepLearning" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/07/deepLearning/" class="article-date">
+  <time class="dt-published" datetime="2022-06-06T17:44:37.678Z" itemprop="datePublished">2022-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="感知机perceptron"><a href="#感知机perceptron" class="headerlink" title="感知机perceptron"></a>感知机perceptron</h2><p>感知机接收多个输入信号，输出一个信号，感知机的信号只有两种取值。</p>
+<p>$1:0?(w_1x_1+w_2x_2&gt;\theta)$</p>
+<p>感知机的局限性就在于它只能表示由一条直线分割的空间。无法表示非线性空间。</p>
+<p>叠加了多层的感知机也称为多层感知机multi-layered perceptron</p>
+<p>异或门是2层感知机。</p>
+<h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>输入层，0层，x<br>中间层，隐藏层f<br>输出层y<br>偏置b<br>权重<br>激活函数h，非线性以体现多层优越性<br>    sigmod：1/1*exp(-x)<br>    阶跃函数：y=f(x):h(b+∑w_ix_i)<br>    Relu<br>输出层激活函数，sigma<br>    恒等函数<br>    softmax   exp(ai)/∑exp(ai+C)，C=-np.max防溢出，<br>前向传播，→<br>损失函数<br>    均方误差½∑(y_k-t_k)²<br>    交叉熵函数-∑t_klg(y_k+delta min)，值是由正确解标签所对应的输出结果决定的<br>mini batch小批量</p>
+<h3 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h3><p>从训练数据中自动获取最优权重参数的过程</p>
+<p>损失函数lost function</p>
+<p>​    均方误差$\frac 1 2 Σ(y_k-t_k)^2$</p>
+<p>​    交叉熵误差-$\sum_k^t log(y_k)$，只计算对应正确解标签的输出的自然对数</p>
+<p>小批量学习 mini-batch</p>
+<p>梯度下降法</p>
+<p>学习率η（超参数，参数的参数）</p>
+<p>$x_n=x_n-η*df/dx_n$</p>
+<p>特征量</p>
+<p>​    SIFT</p>
+<p>​    SURF</p>
+<p>​    HOG</p>
+<p>分类器（机器学习）</p>
+<p>​    SVM</p>
+<p>​    KNN</p>
+<p>神经网络甚至学习特征量    end-to-end machine learning端到端机器学习</p>
+<p>训练数据（监督数据）</p>
+<p>测试数据</p>
+<p>泛化能力</p>
+<p>过拟合</p>
+<h3 id="误差反向传播"><a href="#误差反向传播" class="headerlink" title="误差反向传播"></a>误差反向传播</h3><p>计算图</p>
+<h2 id="class-numpy"><a href="#class-numpy" class="headerlink" title="class numpy:"></a>class numpy:</h2><p>​    array@array<br>​    array@astype@numpy_type/类型转换<br>​    array@dot乘法<br>​    int@dim纬度<br>​    tuple@shape<br>​    random<br>​        choice<br>​    </p>
+<h1 id="神经网络-1"><a href="#神经网络-1" class="headerlink" title="神经网络"></a>神经网络</h1><p>分类问题：类class，样本sample，标签label<br>训练集training set，测试集test set<br>层layer，表示，数据蒸馏data distillation｛全连接，softmax输出｝<br>编译compile，<br>    损失函数loss function，<br>    优化器optimizer，<br>    指标metric：精度acc<br>拟合fit<br>－－》精度acc，损失loss<br>问题：过拟合overfit：在新数据的性能差于训练数据</p>
+<p>经典例子：MINST<br>数据集：from keras.datasets import minst</p>
+<p>层：层的状态是权重，层的本身是知识，层是数据处理模块，层间需要满足层兼容性，即上下层输出输入形态匹配<br>                密集连接层：全连接层：密集层：保存2d向量数据：#Dense<br>                循环层：保存3d序列数据：#LSTM<br>                卷积层：保存4d图像数据：#Conv2D<br>模型：层构成的网络，<code>model_type</code><br>                线性堆叠，Sequential<br>                双分支<br>                多头<br>                Inception</p>
+<p>损失函数：每个输出对应一个损失函数：</p>
+<p>​    二分类：二元交叉熵</p>
+<p>​    多分类：分类交叉熵</p>
+<p>​    序列：联结主义时序分类</p>
+<p>优化器</p>
+<p>● 模型<br><code>from Keras import models</code><br><code>model＝models.[model_type]()</code><br><code>model.add(first_layer__with_input_shape_set)</code><br><code>model.add(layer)</code></p>
+<p>● 层<br><code>from Keras import layers</code><br><code>first_layer__with_input_shape_set＝layers.[#Layer_type]([output_shape],input_shape=(,))</code><br><code>layer＝layers.[#Layer_type]([output_shape])</code></p>
+<p>● 数据集<br><code>from Keras.datasets import [data_set]</code><br><code>(train_data, train_labels), (test_data, test_labels) = [data_set].load_data()</code><br>● 编译<br><code>.compile(optimizer=&#39;&#39;,loss=&#39;&#39;,metrics&#39;&#39;)</code><br>● 拟合<br>                            标签审定<br><code>from keras.utils import to_categorical</code><br><code>train_labels = to_categorical(train_labels)</code><br><code>test_labels = to_categorical(test_labels)</code></p>
+<p><code>.fit([train_data],[train_label],epochs=[],batch_size=[])</code></p>
+<p><code>.evaluate([test_data],[test_label])</code>》》<code>[test_acc]</code><br>● 方法和参数</p>
+<p>len()</p>
+<p>.shape<br>.ndim<br>.dtype</p>
+<p>.reshape()<br>.astype()</p>
+<p>● 显示图像</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line">plt.imshow([image], cmap=plt.cm.binary) </span><br><span class="line">	plt.show()</span><br></pre></td></tr></table></figure>
+<p>● 数据：张量tensor：矩阵向任意【维度dimension》轴axis】的推广：存储在预先分配的程序段<br>            标量scalar：0d，向量vector：1d，矩阵matrix[row,column]：2d，… …<br>            轴的个数ndim：阶rank数<br>            形状shape：元组：各轴向的维度<br>            数据类型dtype：float32 float64 uint8 char 没有字符串张量<br>            操作：张量切片 [:,:,:] tensor slicing<br>            批量batch：第0轴：批量轴batch axis<br>            例：视频：(samples, frames, heigth, width, channels)<br>            运算：<br>                逐元素运算element-wise：maximum()<br>                广播broadcast：<br>                张量点积tensor product：dot</p>
+<p>同济大学，王迪<br>15318934991<br>214609639<br>时间<br>夏令营<br>1397590030</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://ni-miruakou.github.io/2022/06/07/deepLearning/" data-id="cl430wi4o000cakfcgy0s6asf" data-title="" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/07/Flutter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/07/DataGathering/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%BE%E7%A8%8B/">课程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Es/" rel="tag">Es</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WAP/" rel="tag">WAP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/about/" rel="tag">about</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Es/" style="font-size: 10px;">Es</a> <a href="/tags/WAP/" style="font-size: 10px;">WAP</a> <a href="/tags/about/" style="font-size: 10px;">about</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/07/C++/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/Android/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/UWP/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/ProcessService/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/07/OpenGL/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rongbing<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
